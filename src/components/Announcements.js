@@ -1,40 +1,76 @@
 import React from 'react';
-import { Paper, Typography, Box, List, ListItem, ListItemText, IconButton } from '@mui/material';
-import MoreHorizIcon from '@mui/icons-material/MoreHoriz';
+import { Grid, Typography, Box } from '@mui/material';
+import StatCard from './StatCard';
+import ActivityFeed from './ActivityFeed';
+import UpcomingSchedule from './UpcomingSchedule';
+import Announcements from './Announcements';
+import EmployeeChart from './EmployeeChart';
+import TalentRequestChart from './TalentRequestChart';
 
-const announcements = [
-  { title: 'Outing schedule for every department', time: '5 Minutes ago' },
-  { title: 'Meeting HR Department', time: 'Yesterday, 12:30 PM' },
-  { title: 'IT Department need two more talents for UX/UI Designer position', time: 'Yesterday, 09:15 AM' },
-];
-
-function Announcements() {
+function Dashboard() {
   return (
-    <Paper sx={{ p: 2, height: '100%', borderRadius: 4 }}>
-      <Box sx={{ display: 'flex', justifyContent: 'space-between', alignItems: 'center', mb: 2 }}>
-        <Typography variant="h6">Announcement</Typography>
-        <Typography variant="body2" color="text.secondary">Today, 13 Sep 2021</Typography>
-      </Box>
-      <List>
-        {announcements.map((item, index) => (
-          <ListItem key={index} sx={{ px: 0, py: 1, borderBottom: index !== announcements.length - 1 ? '1px solid #E0E0E0' : 'none' }}>
-            <ListItemText
-              primary={item.title}
-              secondary={item.time}
-              primaryTypographyProps={{ variant: 'body1', fontWeight: 'medium' }}
-              secondaryTypographyProps={{ variant: 'body2' }}
-            />
-            <IconButton size="small">
-              <MoreHorizIcon />
-            </IconButton>
-          </ListItem>
-        ))}
-      </List>
-      <Box sx={{ display: 'flex', justifyContent: 'flex-end', mt: 2 }}>
-        <Typography variant="body2" color="primary" sx={{ cursor: 'pointer' }}>See All Announcements</Typography>
-      </Box>
-    </Paper>
+    <Box sx={{ p: 3 }}>
+      <Typography variant="h4" sx={{ mb: 3, fontWeight: 'bold' }}>Dashboard</Typography>
+      <Grid container spacing={3}>
+        <Grid item xs={12} sm={6} md={3}>
+          <StatCard 
+            title="Available Position" 
+            value="24" 
+            subtitle="4 Urgently needed" 
+            color="#5932EA"
+            increase="+14%"
+          />
+        </Grid>
+        <Grid item xs={12} sm={6} md={3}>
+          <StatCard 
+            title="Job Open" 
+            value="10" 
+            subtitle="4 Active hiring" 
+            color="#4BA3F5"
+            increase="+4%"
+          />
+        </Grid>
+        <Grid item xs={12} sm={6} md={3}>
+          <StatCard 
+            title="New Employees" 
+            value="24" 
+            subtitle="4 Department" 
+            color="#DB54FD"
+            increase="+18%"
+          />
+        </Grid>
+        <Grid item xs={12} sm={6} md={3}>
+          <ActivityFeed />
+        </Grid>
+        <Grid item xs={12} md={6}>
+          <Box sx={{ bgcolor: 'background.paper', p: 2, borderRadius: 4 }}>
+            <Typography variant="h6" sx={{ mb: 2 }}>Total Employees</Typography>
+            <EmployeeChart />
+            <Box sx={{ mt: 2, display: 'flex', justifyContent: 'space-between' }}>
+              <Typography variant="body2" color="text.secondary">120 Men</Typography>
+              <Typography variant="body2" color="text.secondary">96 Women</Typography>
+            </Box>
+          </Box>
+        </Grid>
+        <Grid item xs={12} md={6}>
+          <Box sx={{ bgcolor: 'background.paper', p: 2, borderRadius: 4 }}>
+            <Typography variant="h6" sx={{ mb: 2 }}>Talent Request</Typography>
+            <TalentRequestChart />
+            <Box sx={{ mt: 2, display: 'flex', justifyContent: 'space-between' }}>
+              <Typography variant="body2" color="text.secondary">6 Men</Typography>
+              <Typography variant="body2" color="text.secondary">10 Women</Typography>
+            </Box>
+          </Box>
+        </Grid>
+        <Grid item xs={12} md={6}>
+          <UpcomingSchedule />
+        </Grid>
+        <Grid item xs={12} md={6}>
+          <Announcements />
+        </Grid>
+      </Grid>
+    </Box>
   );
 }
 
-export default Announcements;
+export default Dashboard;
