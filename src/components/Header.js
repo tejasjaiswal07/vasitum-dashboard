@@ -69,7 +69,7 @@ function Header({ isMobile }) {
           <NotificationsNoneOutlinedIcon />
         </IconButton>
         <Box sx={{ display: 'flex', alignItems: 'center', ml: 2 }}>
-          <Avatar alt="Admira John" src="/static/images/avatar/2.jpg" />
+          <Avatar alt="Admira John" src="../src/socialphoto1.jpeg" />
           <Typography variant="subtitle1" sx={{ ml: 1, display: { xs: 'none', sm: 'block' } }}>
             Admira John
           </Typography>
